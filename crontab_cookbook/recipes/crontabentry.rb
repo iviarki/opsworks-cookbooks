@@ -1,5 +1,5 @@
 cron "bundle_command" do
-  action node.tags.include?('bundle-command') ? :create : :delete
+  action node.tags.include?('bundle-command') :create
   minute "*/3"
   hour "*"
   weekday "*"
