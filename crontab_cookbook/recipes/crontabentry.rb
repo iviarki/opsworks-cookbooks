@@ -1,5 +1,4 @@
 cron "bundle_command" do
-  action node.tags.include?('bundle-command') :create
   minute "*/3"
   hour "*"
   weekday "*"
@@ -12,4 +11,5 @@ cron "bundle_command" do
     RAILS_ASSET_ID=`git rev-parse HEAD`
     bundle exec rake _report
   }
+  action :create
 end
