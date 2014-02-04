@@ -9,7 +9,7 @@ cron "bundle_command" do
   command %Q{
     cd /srv/opscode-community-site/current &&
     env RUBYLIB="/srv/opscode-community-site/current/lib"
-    RAILS_ASSET_ID=`git rev-parse HEAD` RAILS_ENV="#{rails_env}"
+    RAILS_ASSET_ID=`git rev-parse HEAD`
     bundle exec rake _report
   }
 end
