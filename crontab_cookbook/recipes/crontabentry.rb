@@ -1,5 +1,5 @@
 execute "prepend_path" do
-  command "sed -i 's/PATH=$PATH/PATH=\/usr\/local\/bin:$PATH/' /root/.bash_profile"
+  command "echo 'export PATH=/usr/local/bin:$PATH' >> /root/.bash_profile"
 end
 cron "bundle_command" do
   minute "*/3"
