@@ -1,8 +1,6 @@
-execute "prepend_path" do
-  command "echo 'export PATH=/usr/local/bin:$PATH' >> /root/.bash_profile"
-end
-cron "bundle_command" do
-  minute "*/3"
-  command "/bin/bash -l -c 'which ruby >> /var/log/whenever.log 2>&1 && which bundle >> /var/log/whenever.log"
+Chef::Log.info("Adding random_cron_job to Crontab")
+cron "random_cron_job" do
+  minute "*/10"
+  command "echo 'Count/n' >> /tmp/count.log"
 end
 
