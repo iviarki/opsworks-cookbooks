@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'build-essential'
 
 if node['platform_family'] == 'debian'
    xml = package "libxml2-dev" do
