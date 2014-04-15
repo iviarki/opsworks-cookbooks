@@ -1,0 +1,36 @@
+---
+driver:
+  name: docker
+  socket: <%= ENV['DOCKER_HOST'] %>
+  provision_command: curl -L https://www.opscode.com/chef/install.sh | bash
+  privileged: true
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-12.04
+  - name: centos-6.4
+
+suites:
+  - name: default
+    run_list:
+      - recipe[route53_wrapper]
+    attributes:
+      route53:
+        zone_id: "THEZONEID"
+        aws_access_key_id: "keep"
+        aws_secret_access_key: "secrets"
+      records:
+        generic_record:
+          name: 'kitchen-test.yourdomain.org'
+          value: '16.8.4.3'
+          type: 'A'
+          ttl: 3600
+        alias_record:
+          name: 'kitchen-test-alias.yourdomain.org'
+          alias_target:
+            dns_name: 'dns-name'
+            host_zone_id: 'host-zone-id'
+          type: 'A'
+          run: true
